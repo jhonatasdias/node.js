@@ -1,7 +1,6 @@
-const http = require('http');
 const fs = require('fs');
 
-const server = http.createServer((req, res) => {
+const requestHandler = (req, res) => {
     const url = req.url;
     const method = req.method;
 
@@ -19,18 +18,19 @@ const server = http.createServer((req, res) => {
             console.log(chunk)
             body.push(chunk);
         })
-        req.on('end', () => {
+        return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             console.log(parsedBody)
             const message = parsedBody.split('=')[1];
-            fs.writeFileSync('message.txt', message);
+            fs.writeFile('message.txt', message, (err) => {
+                res.statusCode = 302;
+                res.setHeader('Location', '/');
+                return res.end();
+            });
         })
-
-        res.statusCode = 302;
-        res.setHeader('Location', '/');
-        return res.end();
+    
     }
-
+    
     /* console.log(req); */
     console.log(req.url, req.method, req.headers);
     // process.exit();
@@ -40,6 +40,18 @@ const server = http.createServer((req, res) => {
     res.write('<body><h1>Hello from my Node.js Server!</h1></body>');
     res.write('</html>');
     res.end();
-});
-
-server.listen(3000);
+}
+// 1-Method
+/* module.exports = requestHandler; */
+// 2-Method
+/* module.exports = {
+    handler: requestHandler,
+    someText: 'Some hard coded text'
+} */
+//3-Method
+/* module.exports.handles = requestHandler;
+module.exports.someText = 'Some hard coded text';
+*/
+// 4-Method
+exports.handles = requestHandler;
+exports.someText = 'Some hard coded text';

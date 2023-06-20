@@ -3,7 +3,7 @@ const knex = require('knex');
 const router = express.Router();
 
 const db = knex({
-    cliente: 'sqlite3',
+    client: 'sqlite3',
     connection: {
         filename: './dev.sqlite3'
     },
@@ -11,7 +11,7 @@ const db = knex({
 });
 
 // Rota GET para obter todos os dados CURSO
-router.get('/cursos', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const cursos = await db.select().table('cursos');
         res.json(cursos);
@@ -20,9 +20,9 @@ router.get('/cursos', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
-
+/* 
 // Rota POST para adicionar um novo post
-router.post('/cursos', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const { title, content } = req.body;
         await db('cursos').insert({ title, content });
@@ -31,4 +31,6 @@ router.post('/cursos', async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });
     }
-});
+}); */
+
+module.exports = router;

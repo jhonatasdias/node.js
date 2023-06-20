@@ -6,7 +6,7 @@ exports.up = function(knex) {
         table.string('sigla');
         table.boolean('ativo');
         table.specificType('disciplinas', 'integer[]');
-        table.integer('id_nucleo'); // relação com outra tabela
+/*         table.integer('id_nucleo').unsigned().references('id').inTable('nucleos'); // relação com outra tabela (como é relacionamento de tabelas irá ser aplicado posteriormente)*/
         table.string('nucleo');
         table.specificType('tematicas', 'string[]');
         table.string('exp_ti');

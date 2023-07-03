@@ -20,17 +20,17 @@ router.get('/', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
-/* 
+
 // Rota POST para adicionar um novo post
 router.post('/', async (req, res) => {
     try {
-        const { title, content } = req.body;
-        await db('cursos').insert({ title, content });
+        const { curso, sigla, ativo, disciplinas, nucleo, tematicas, exp_ti, exp_ti_val } = req.body;
+        await db('cursos').insert({ curso, sigla, ativo, disciplinas, nucleo, tematicas, exp_ti, exp_ti_val });
         res.sendStatus(201);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });
     }
-}); */
+});
 
 module.exports = router;

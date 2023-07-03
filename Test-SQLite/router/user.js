@@ -11,7 +11,7 @@ const db = knex({
   });  
 
 // Rota GET para obter todos os usuários
-router.get('/', async(req, res) => {
+router.get('/', async(req, res) => {  // req = request, res = response
     try {
         const users = await db.select().table('users');
         res.json(users);

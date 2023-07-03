@@ -1,0 +1,5 @@
+docker ps
+
+docker-compose up -d(em plano de fundo ou não)
+docker stop {container_name}
+docker start {container_name}

@@ -1,17 +1,23 @@
+const path = require('path');
 const express = require('express');
+
+const rootDir = require('../util/path'); // => __dirname, '../'
 
 const router = express.Router();
 
-router.use('/add-product', (req, res, next) => {
-    console.log('In another the Middleware!');
-    res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="subimt">Add Product</button></form>');
+const products = [];
+
+// /admin/add-product => GET
+router.get('/add-product', (req, res, next) => {
+    res.render('add-product', {pageTitle: 'Add Product'})
 })  
 
-router.post('/product', (req, res) => {
-    console.log(req.body);
+// /admin/add-product => POST
+router.post('/add-product', (req, res, next) => {
+    products.push({ title: req.body.title })
     res.redirect('/');
 })
 
 
-
-module.exports = router;
+exports.routes = router;
+exports.products = products;

@@ -1,0 +1,50 @@
+.grid {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
+    gap: 20px;
+  }
+  
+  .card {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card__header {
+    margin-bottom: 10px;
+  }
+  
+  .product__title {
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  .card__item img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .product__price {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .product__description {
+    margin-top: 10px;
+  }
+  
+  .card__actions {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }

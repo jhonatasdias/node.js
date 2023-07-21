@@ -29,15 +29,34 @@ router.get('/professor', async(req, res) => {
     }
 })
 
+router.get('/disciplina', async(req, res) => {
+    try{
+        dbConnection = db.getInstance();
+
+        const professor = await dbConnection.client.query("SELECT * FROM tbl_disciplina");
+        res.json(professor.rows);
+        console.log('Buscando Professor');
+    } catch(error) {
+        console.error(error)
+        res.status(500).json( {massage:'Erro ao buscar disciplina'} )
+    }
+})
+
 router.get('/cursodisciplina', async(req, res) => {
     try{
         dbConnection = db.getInstance()
 
-        const cursoDisciplina = await dbConnection.client.query("SELECT * FROM tbl_projeto_pedagogico")
+        const cursoDisciplina = await dbConnection.client.query(
+            `SELECT c.id_curso, c.id_unidade, c.dsc_nome_curso, c.dsc_sigla_curso, od.id_oferta, ARRAY_AGG(od.id_disciplina) AS id_disciplina
+             FROM tbl_oferta_disciplina od
+                INNER JOIN tbl_oferta o ON od.id_oferta = o.id_oferta
+                INNER JOIN tbl_curso c ON o.id_curso = c.id_curso
+             GROUP BY od.id_oferta, c.id_curso, c.id_unidade, c.dsc_nome_curso, c.dsc_sigla_curso`
+            )
         res.json(cursoDisciplina.rows);
     } catch (error){
         console.error(error)
-        res.status(500).json( {massage:'Erro ao apresentar curso-disciplina'})
+        res.status(500).json( {massage:'Erro ao buscar curso-disciplina'})
     }
 })
 

@@ -8,7 +8,7 @@ class dbConnection {
             host: 'localhost',
             database: 'postgres',
             password: '1234',
-            port: 5432
+            port: 5433
         });
         this.client.connect()
     }

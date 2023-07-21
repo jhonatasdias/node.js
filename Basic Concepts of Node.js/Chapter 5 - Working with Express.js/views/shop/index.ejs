@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
+<%- include('../includes/head.ejs') %>
     <link rel="stylesheet" href="/css/shop.css">
     <title><% pageTitle %></title>
 </head>
 <body>
-    <header class="main-header">
-        <nav class="main-header__nav">
-            <ul class="main-header__item-list">
-                <li class="main-header__item"><a class="active" href="/">Shop</a></li>
-                <li class="main-header__item"><a href="/admin/add-product">Add Product</a></li>
-            </ul>
-        </nav>
-    </header>
+    <%- include('../includes/navigation.ejs') %>
+
     <main>
         <% if(prods.length > 0) { %>
             <div class="grid">
@@ -24,11 +13,11 @@
                         <header class="card__header">
                             <h1 class="product__title"><%= product.title %></h1>
                         <div class="card__item">
-                            <img src="http://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png" alt="A Book">
+                            <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
                         </div>
                         <div class="card__content">
-                            <h2 class="product__price">$14.99</h2>
-                            <p class="product__description">A very interesting book about so many even more interesting things!</p>
+                            <h2 class="product__price">$<%= product.price %></h2>
+                            <p class="product__description"><%= product.description %></p>
                         </div>
                         <div class="card__actions">
                             <button class="btn">Add to Cart</button>
@@ -41,5 +30,4 @@
             <h1>No Products Found!</h1>
         <% } %>
     </main>
-</body>
-</html>
+<%- include('../includes/end.ejs') %>

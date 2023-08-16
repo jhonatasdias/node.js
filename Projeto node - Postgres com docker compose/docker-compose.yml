@@ -11,3 +11,15 @@ services:
       - ./db:/var/lib/postgresql/data
     ports:
       - "5433:5432"
+  node-app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: servidor
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/app
+    restart: always
+    depends_on:
+      - "postgres"

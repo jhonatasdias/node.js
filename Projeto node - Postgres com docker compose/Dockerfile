@@ -1,19 +1,17 @@
-FROM postgres:latest
-LABEL metadadosdisciplinas Version=0.0.1
-COPY database.sql ./db
+# Use an official Node.js runtime as the base image
+FROM node:18-alpine
 
-# Define as variaveis de ambientes
-ENV POSTGRES_USER=myuser
-ENV POSTGRES_PASSWORD=mypassword
+# Set the working directory inside the container
+WORKDIR /
 
-# Arguemento para personalizar o nome do banco de dados
-ARG DB_NAME=mydatabase
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-# Criação do banco de dados
-RUN /etc/init.d/postgresql start && \
-    psql --command "CREATE DATABASE $DB_NAME" && \
-    /etc/init.d/postgresql stop
+# Install application dependencies
+RUN npm install
 
-# Definição do banco de dados a ser usado
-## This optional environment variable can be used to define a different name for the default database that is created when the image is first started. If it is not specified, then the value of POSTGRES_USER will be used.
-ENV POSTGRES_DB=$DB_NAME
+# Copy the rest of the application code into the container
+COPY . .
+
+# Specify the command to run when the container starts
+CMD ["node", "app.js"]

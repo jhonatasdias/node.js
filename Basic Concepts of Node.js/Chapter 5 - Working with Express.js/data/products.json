@@ -1,8 +1,23 @@
 [
     {
+        "id": "12345",
         "title": "A Book",
         "imageUrl": "https://static.vecteezy.com/system/resources/previews/009/399/398/original/old-vintage-book-clipart-design-illustration-free-png.png",
         "description": "This is awesome book!",
         "price": "19"
+    },
+    {
+        "title": "Another Product",
+        "imageUrl": "https://static.vecteezy.com/system/resources/previews/009/399/398/original/old-vintage-book-clipart-design-illustration-free-png.png",
+        "description": "Another very amazing product!",
+        "price": "20.99",
+        "id": "0.6446832248202861"
+    },
+    {
+        "title": "Book 2",
+        "imageUrl": "https://media.gettyimages.com/id/157482029/pt/foto/pilha-de-livros.jpg?s=612x612&w=0&k=20&c=myOJb6QEPe3OX7IO_youGJY_qc9KF699encUvHRP1E0=",
+        "description": "Important book you need lern!",
+        "price": "50.99",
+        "id": "0.6127484852268523"
     }
 ]

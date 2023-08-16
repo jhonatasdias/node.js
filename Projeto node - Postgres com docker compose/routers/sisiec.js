@@ -9,14 +9,14 @@ router.get('/cursos', async(req, res) => {
 
         const cursos = await dbConnection.client.query('SELECT * FROM tbl_curso');
         res.json(cursos.rows);
-        console.log('Bsucando Cursos')
+        console.log('Buscando Cursos')
     } catch (error){
         console.error(error)
         res.status(500).json( {massage:'Erro ao buscar cursos'} )
     }
 })
 
-router.get('/professor', async(req, res) => {
+router.get('/professores', async(req, res) => {
     try{
         dbConnection = db.getInstance();
 
@@ -29,20 +29,20 @@ router.get('/professor', async(req, res) => {
     }
 })
 
-router.get('/disciplina', async(req, res) => {
+router.get('/disciplinas', async(req, res) => {
     try{
         dbConnection = db.getInstance();
 
         const professor = await dbConnection.client.query("SELECT * FROM tbl_disciplina");
         res.json(professor.rows);
-        console.log('Buscando Professor');
+        console.log('Buscando Disciplina');
     } catch(error) {
         console.error(error)
         res.status(500).json( {massage:'Erro ao buscar disciplina'} )
     }
 })
 
-router.get('/cursodisciplina', async(req, res) => {
+router.get('/cursodisciplinas', async(req, res) => {
     try{
         dbConnection = db.getInstance()
 
@@ -54,6 +54,7 @@ router.get('/cursodisciplina', async(req, res) => {
              GROUP BY od.id_oferta, c.id_curso, c.id_unidade, c.dsc_nome_curso, c.dsc_sigla_curso`
             )
         res.json(cursoDisciplina.rows);
+        console.log('Buscando curso-disciplina');
     } catch (error){
         console.error(error)
         res.status(500).json( {massage:'Erro ao buscar curso-disciplina'})

@@ -1,17 +1,21 @@
+// Modules
 const path = require('path');
 const express = require('express');
 
 const shopController = require('../controllers/shop')
 
-// Solicitando a array de dados em admin
-
 const router = express.Router();
 
+// Routers
 router.get('/', shopController.getIndex);
 
-router.get('/products', shopController.getProduct);
+router.get('/products', shopController.getProducts);
+
+router.get('/product/:productId', shopController.getProduct);
 
 router.get('/cart', shopController.getCart);
+
+router.post('/cart', shopController.postCart);
 
 router.get('/orders', shopController.getOrders);
 
